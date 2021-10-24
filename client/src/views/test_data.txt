@@ -1,0 +1,18 @@
+state = {
+    user: { id: 1, name: 'Ibrahim' },
+    messages: [
+        { sender: 1, receiver: 2, content: 'Hello, How are You' },
+        { sender: 1, receiver: 2, content: 'Hello, How are You' },
+        { sender: 3, receiver: 1, content: 'Hello, How are You' },
+        { sender: 1, receiver: 3, content: 'Hello, How are You' },
+        { sender: 1, receiver: 2, content: 'Hello, How are You' },
+        { sender: 3, receiver: 2, content: 'Hello, How are You' },
+        { sender: 2, receiver: 1, content: 'Hello, How are You' },
+    ],
+    contacts: [
+        { id: 2, name: 'omar' },
+        { id: 3, name: 'Ahmad' },
+    ],
+    contact: { id: 2, name: 'omar' },
+};
+
