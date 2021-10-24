@@ -8,12 +8,20 @@ import Auth from 'Auth';
 class Login extends React.Component {
     state = { userName: '', password: '', error: '' };
 
+    /**
+     * Change form handler
+     * @param e
+     */
     onChange = (e) =>
         this.setState({
             [e.target.name]: e.target.value,
             error: null,
         });
 
+    /**
+     * Form submit handler.
+     * @param e
+     */
     onSubmit = (e) => {
         e.preventDefault();
         let data = {

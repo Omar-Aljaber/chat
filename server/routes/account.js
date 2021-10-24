@@ -6,6 +6,9 @@ const auth = require('../middlewares/auth');
 const path = require('path');
 const multer = require('multer');
 
+/**
+ * Handel multipart/form-data.
+ */
 const storage = multer.diskStorage({
     destination: 'public/uploads/',
     filename: function (req, file, cb) {
@@ -13,6 +16,9 @@ const storage = multer.diskStorage({
     },
 });
 
+/**
+ * User profile middleware.
+ */
 const upload = multer({
     limits: { fileSize: 1024 * 1024 },
     storage: storage,
@@ -27,12 +33,18 @@ const upload = multer({
     },
 });
 
+/**
+ * [POST] update profile.
+ */
 router.post(
     '/',
     [auth.authenticated, upload.single('avatar')],
     controller.profile
 );
 
+/**
+ * [POST] Change password.
+ */
 router.post('/password', auth.authenticated, controller.password);
 
 module.exports = router;

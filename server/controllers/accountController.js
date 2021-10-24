@@ -1,5 +1,11 @@
 const createError = require('http-errors');
 
+/**
+ * Update user profile.
+ * @param req
+ * @param res
+ * @param next
+ */
 exports.profile = (req, res, next) => {
     const user = req.user;
     user.name = req.body.name;
@@ -21,6 +27,12 @@ const sendUpdateUser = (user) => {
     io.emit('update_user', user.getData());
 };
 
+/**
+ * Change user password
+ * @param req
+ * @param res
+ * @param next
+ */
 exports.password = (req, res, next) => {
     const { password, newPassword } = req.body;
     let user = req.user;

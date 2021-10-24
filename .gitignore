@@ -1,7 +1,7 @@
 # Client
 client/node_modules
 client/.env
-client/public/robots.txt
+client/src/views/test_data.txt
 
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Auth from 'Auth';
 import { Avatar } from 'components';
 import {
     DropdownItem,
@@ -12,11 +11,10 @@ import {
 import moment from 'moment';
 
 const ChatHeader = (props) => {
-    const logout = () => {
-        Auth.logout();
-        props.history.push('/');
-    };
-
+    /**
+     * Render user status
+     * @returns {string}
+     */
     const status = () => {
         if (props.typing) return 'typing...';
         if (props.contact.status === true) return 'online';
@@ -38,9 +36,13 @@ const ChatHeader = (props) => {
                         <i className="fa fa-ellipsis-v" />
                     </DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={e => props.history.push('/password')}>Edit Password</DropdownItem>
-                        <DropdownItem divider/>
-                        <DropdownItem onClick={logout}>logout</DropdownItem>
+                        <DropdownItem
+                            onClick={(e) => props.history.push('/password')}
+                        >
+                            Edit Password
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={props.logout}>logout</DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
             </Nav>

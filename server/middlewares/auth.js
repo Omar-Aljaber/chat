@@ -2,6 +2,11 @@ const User = require('../models/user');
 const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 
+/**
+ * Socket.io Middleware.
+ * @param socket
+ * @param next
+ */
 exports.socket = (socket, next) => {
     if (!socket.handshake.query || !socket.handshake.query.token) {
         return next(createError(401, 'auth_error'));
@@ -22,6 +27,12 @@ exports.socket = (socket, next) => {
     );
 };
 
+/**
+ * LoggedIn Middleware.
+ * @param req
+ * @param res
+ * @param next
+ */
 exports.authenticated = (req, res, next) => {
     let token = req.headers['authorization'];
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {

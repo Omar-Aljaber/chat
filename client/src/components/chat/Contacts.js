@@ -19,6 +19,12 @@ class Contacts extends React.Component {
             </div>
         );
     }
+
+    /**
+     * Render single contact.
+     * @param contact
+     * @param index
+     */
     renderContact = (contact, index) => {
         if (!contact.name.includes(this.state.search)) return;
         let messages = this.props.messages.filter(

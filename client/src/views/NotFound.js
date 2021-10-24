@@ -1,9 +1,11 @@
 import React from 'react';
 
-class NotFound extends React.Component {
-    render() {
-        return <div>Not Found</div>;
-    }
-}
+/**
+ * NotFound Component Page.
+ * @param props
+ */
+const NotFound = (props) => {
+    return <h3>Not Found</h3>;
+};
 
 export default NotFound;

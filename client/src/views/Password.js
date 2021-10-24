@@ -5,14 +5,22 @@ import { Error } from 'components';
 import axios from 'axios';
 
 class Password extends React.Component {
-    state = { password: '', newPassword: ''};
+    state = { password: '', newPassword: '' };
 
+    /**
+     * Change form handler
+     * @param e
+     */
     onChange = (e) =>
         this.setState({
             [e.target.name]: e.target.value,
             error: null,
         });
 
+    /**
+     * Form submit handler.
+     * @param e
+     */
     onSubmit = (e) => {
         e.preventDefault();
         let data = {
@@ -25,8 +33,7 @@ class Password extends React.Component {
                 this.props.history.push('/');
             })
             .catch((err) => {
-                // this.setState({ error: err.response.data.message });
-                console.log(err.response)
+                this.setState({ error: err.response.data.message });
             });
     };
 

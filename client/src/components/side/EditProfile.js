@@ -9,12 +9,22 @@ class EditProfile extends React.Component {
         name: this.props.user.name,
         about: this.props.user.about,
     };
+
     constructor(props) {
         super(props);
         this.fileUpload = React.createRef();
     }
+
+    /**
+     * Trigger click on file upload input
+     * @param e
+     */
     showFileUpload = (e) => this.fileUpload.current.click();
 
+    /**
+     * If avatar input changed then change the preview.
+     * @param e
+     */
     onImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             this.setState({
@@ -24,9 +34,17 @@ class EditProfile extends React.Component {
         }
     };
 
+    /**
+     * Change form handler
+     * @param e
+     */
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value, error: null });
 
+    /**
+     * Form submit handler.
+     * @param e
+     */
     onSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
@@ -44,6 +62,9 @@ class EditProfile extends React.Component {
             );
     };
 
+    /**
+     * When close sidebar.
+     */
     onClose = (e) => {
         this.setState({
             name: this.props.user.name,

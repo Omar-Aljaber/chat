@@ -25,6 +25,10 @@ const ModelSchema = mongoose.Schema({
     avatar: String,
 });
 
+/**
+ * Pre save middleware (before save user document).
+ * @param next
+ */
 ModelSchema.pre('save', function (next) {
     if (this.isNow || this.isModified('password')) {
         this.password = bcrypt.hashSync(this.password, 8);
@@ -32,6 +36,9 @@ ModelSchema.pre('save', function (next) {
     next();
 });
 
+/**
+ * Get user profile data.
+ */
 ModelSchema.methods.getData = function () {
     return {
         id: this._id,
@@ -42,20 +49,33 @@ ModelSchema.methods.getData = function () {
     };
 };
 
+/**
+ * Generate user token with profile data.
+ */
 ModelSchema.methods.signJWT = function () {
     let data = this.getData();
     data.token = jwt.sign(data, process.env.JWT_SECRET);
     return data;
 };
 
+/**
+ * Check if given password is correct.
+ * @param password
+ */
 ModelSchema.methods.checkPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
+/**
+ * Append id attribute.
+ */
 ModelSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
 
+/**
+ * Enable virtual attributes (id).
+ */
 ModelSchema.set('toJSON', {
     virtuals: true,
 });
